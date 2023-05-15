@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run rules && npm run issues",
     "rules": "node ./src/rules.js",
     "issues": "node ./src/issues.js"
   },

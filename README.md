@@ -31,12 +31,16 @@ Generate a CSV file with all of the information related to the **Rules** in your
 npm run rules
 ```
 
+The output CSV Report file can be found at `./output/sonarqube_rules.csv`
+
 ### Generate CSV for all Issues
 
 Generate a CSV file with all of the information related to the **Issues** in your SonarQube instance:
 ```bash
 npm run issues
 ```
+
+The output CSV Report file can be found at `./output/sonarqube_issues.csv`
 
 ## License
 MIT

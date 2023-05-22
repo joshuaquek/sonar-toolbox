@@ -28,7 +28,10 @@ const csv = require('csv-writer').createObjectCsvWriter({
   ]
 })
 
-if (fs.existsSync('./output/sonarqube_issues.csv')) { fs.unlinkSync('./output/sonarqube_issues.csv') }
+if (fs.existsSync('./output/sonarqube_issues.csv')) {
+  fs.unlinkSync('./output/sonarqube_issues.csv')
+  fs.closeSync(fs.openSync('./output/sonarqube_issues.csv', 'w'))
+}
 
 async function fetchAndWriteIssues () {
   const flattenIssue = (issue) => {

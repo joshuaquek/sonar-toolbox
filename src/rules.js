@@ -28,7 +28,10 @@ const csv = require('csv-writer').createObjectCsvWriter({
   ]
 })
 
-if (fs.existsSync('./output/sonarqube_rules.csv')) { fs.unlinkSync('./output/sonarqube_rules.csv') }
+if (fs.existsSync('./output/sonarqube_rules.csv')) {
+  fs.unlinkSync('./output/sonarqube_rules.csv')
+  fs.closeSync(fs.openSync('./output/sonarqube_rules.csv', 'w'))
+}
 
 async function fetchAndWriteRules () {
   const flattenRule = (rule) => {
@@ -59,7 +62,7 @@ async function fetchAndWriteRules () {
   }
 
   for (let pageIndex = 1; ; pageIndex++) {
-    const username =  process.env.SONARQUBE_TOKEN || '' // replace with your actual username
+    const username = process.env.SONARQUBE_TOKEN || '' // replace with your actual username
     const password = ''
     const response = await axios.get(`${process.env.SONARQUBE_HOST || 'http://localhost:9000'}/api/rules/search?p=${pageIndex}&ps=100&asc=true`, { auth: { username, password }, params: { username } })
     const { rules, total } = response.data

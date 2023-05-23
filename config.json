@@ -1,0 +1,4 @@
+{
+  "SONARQUBE_HOST": "http://your_ip_address_or_url_here:port_here",
+  "SONARQUBE_TOKEN":"your_token_here"
+}

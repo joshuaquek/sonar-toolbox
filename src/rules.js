@@ -68,30 +68,30 @@ async function cleanUpOldFiles () {
 async function fetchAndWriteCSV () {
   return new Promise(async (resolve, reject) => {
     try {
-      const flattenIssue = (rule) => {
+      const flattenRowObject = (rowObject) => {
         const flattenString = (str) => str ? he.encode(str).replace(/[\r\n]+/g, '\\n') : ''
         const flattenArray = (arr) => arr ? he.encode(arr.join(',')).replace(/[\r\n]+/g, '\\n') : []
         return {
-          key: flattenString(rule.key),
-          repo: flattenString(rule.repo),
-          name: flattenString(rule.name),
-          createdAt: flattenString(rule.createdAt),
-          htmlDesc: flattenString(rule.htmlDesc),
-          mdDesc: flattenString(rule.mdDesc),
-          severity: flattenString(rule.severity),
-          status: flattenString(rule.status),
-          isTemplate: rule.isTemplate,
-          tags: flattenArray(rule.tags),
-          sysTags: flattenArray(rule.sysTags),
-          lang: flattenString(rule.lang),
-          langName: flattenString(rule.langName),
-          params: JSON.stringify(rule.params),
-          type: flattenString(rule.type),
-          remFnOverloaded: rule.remFnOverloaded,
-          scope: flattenString(rule.scope),
-          isExternal: rule.isExternal,
-          descriptionSections: JSON.stringify(rule.descriptionSections),
-          educationPrinciples: JSON.stringify(rule.educationPrinciples)
+          key: flattenString(rowObject.key),
+          repo: flattenString(rowObject.repo),
+          name: flattenString(rowObject.name),
+          createdAt: flattenString(rowObject.createdAt),
+          htmlDesc: flattenString(rowObject.htmlDesc),
+          mdDesc: flattenString(rowObject.mdDesc),
+          severity: flattenString(rowObject.severity),
+          status: flattenString(rowObject.status),
+          isTemplate: rowObject.isTemplate,
+          tags: flattenArray(rowObject.tags),
+          sysTags: flattenArray(rowObject.sysTags),
+          lang: flattenString(rowObject.lang),
+          langName: flattenString(rowObject.langName),
+          params: JSON.stringify(rowObject.params),
+          type: flattenString(rowObject.type),
+          remFnOverloaded: rowObject.remFnOverloaded,
+          scope: flattenString(rowObject.scope),
+          isExternal: rowObject.isExternal,
+          descriptionSections: JSON.stringify(rowObject.descriptionSections),
+          educationPrinciples: JSON.stringify(rowObject.educationPrinciples)
         }
       }
 
@@ -100,7 +100,7 @@ async function fetchAndWriteCSV () {
         const password = ''
         const response = await axios.get(`${process.env.SONARQUBE_HOST || 'http://localhost:9000'}/api/rules/search?p=${pageIndex}&ps=100`, { auth: { username, password }, params: { username } })
         const { rules, total } = response.data
-        await csv.writeRecords(rules.map(flattenIssue))
+        await csv.writeRecords(rules.map(flattenRowObject))
         if (pageIndex >= Math.ceil(total / 100)) break
       }
       return resolve()

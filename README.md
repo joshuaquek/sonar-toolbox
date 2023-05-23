@@ -46,5 +46,7 @@ npm run issues
 
 The output CSV Report file can be found at `./output/sonarqube_issues.csv`
 
+Please also note that in SonarQube, by default, the SonarQube UI Dashboard shows all of the Unresolved Issues. To see all of the Issues, one has to use the Filter bar on the left side under the "Resolution" filter and uncheck "Unresolved" to include all of the Issues.
+
 ## License
 MIT

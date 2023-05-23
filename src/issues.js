@@ -68,30 +68,30 @@ async function cleanUpOldFiles () {
 async function fetchAndWriteCSV () {
   return new Promise(async (resolve, reject) => {
     try {
-      const flattenIssue = (issue) => {
+      const flattenRowObject = (rowObject) => {
         const flattenString = (str) => str ? he.encode(str).replace(/[\r\n]+/g, '\\n') : ''
         const flattenArray = (arr) => arr ? he.encode(arr.join(',')).replace(/[\r\n]+/g, '\\n') : []
         return {
-          key: flattenString(issue.key),
-          rule: flattenString(issue.rule),
-          severity: flattenString(issue.severity),
-          component: flattenString(issue.component),
-          project: flattenString(issue.project),
-          line: issue.line,
-          hash: flattenString(issue.hash),
-          textRange: JSON.stringify(issue.textRange),
-          status: flattenString(issue.status),
-          message: flattenString(issue.message),
-          effort: flattenString(issue.effort),
-          debt: flattenString(issue.debt),
-          author: flattenString(issue.author),
-          tags: flattenArray(issue.tags),
-          creationDate: flattenString(issue.creationDate),
-          updateDate: flattenString(issue.updateDate),
-          type: flattenString(issue.type),
-          scope: flattenString(issue.scope),
-          quickFixAvailable: issue.quickFixAvailable,
-          messageFormattings: JSON.stringify(issue.messageFormattings)
+          key: flattenString(rowObject.key),
+          rule: flattenString(rowObject.rule),
+          severity: flattenString(rowObject.severity),
+          component: flattenString(rowObject.component),
+          project: flattenString(rowObject.project),
+          line: rowObject.line,
+          hash: flattenString(rowObject.hash),
+          textRange: JSON.stringify(rowObject.textRange),
+          status: flattenString(rowObject.status),
+          message: flattenString(rowObject.message),
+          effort: flattenString(rowObject.effort),
+          debt: flattenString(rowObject.debt),
+          author: flattenString(rowObject.author),
+          tags: flattenArray(rowObject.tags),
+          creationDate: flattenString(rowObject.creationDate),
+          updateDate: flattenString(rowObject.updateDate),
+          type: flattenString(rowObject.type),
+          scope: flattenString(rowObject.scope),
+          quickFixAvailable: rowObject.quickFixAvailable,
+          messageFormattings: JSON.stringify(rowObject.messageFormattings)
         }
       }
 
@@ -100,7 +100,7 @@ async function fetchAndWriteCSV () {
         const password = ''
         const response = await axios.get(`${process.env.SONARQUBE_HOST || 'http://localhost:9000'}/api/issues/search?p=${pageIndex}&ps=100`, { auth: { username, password }, params: { username } })
         const { issues, total } = response.data
-        await csv.writeRecords(issues.map(flattenIssue))
+        await csv.writeRecords(issues.map(flattenRowObject))
         if (pageIndex >= Math.ceil(total / 100)) break
       }
       return resolve()

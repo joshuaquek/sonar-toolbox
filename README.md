@@ -4,9 +4,12 @@ A set of utility tools that one can use with SonarQube (connects via SonarQube W
 ## Disclaimer
 This is NOT an official SonarSource product but simply a personal project developed by me, being an avid open-source hobbyist. Please feel free to Star this repo if you have found it helpful.
 
-## Setup
+## Prerequisites
 
-Make sure that you have NodeJS v18 and above
+* SonarQube 10.0 and above
+* NodeJS v18 and above
+
+## Setup
 
 Install required modules:
 ```bash

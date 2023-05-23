@@ -6,25 +6,20 @@ const csv = require('csv-writer').createObjectCsvWriter({
   path: outputFileNameAndPath,
   header: [
     { id: 'key', title: 'Key' },
-    { id: 'rule', title: 'Rule' },
-    { id: 'severity', title: 'Severity' },
     { id: 'component', title: 'Component' },
     { id: 'project', title: 'Project' },
-    { id: 'line', title: 'Line' },
-    { id: 'hash', title: 'Hash' },
-    { id: 'textRange', title: 'Text Range' },
+    { id: 'securityCategory', title: 'Security Category' },
+    { id: 'vulnerabilityProbability', title: 'Vulnerability Probability' },
     { id: 'status', title: 'Status' },
+    { id: 'line', title: 'Line' },
     { id: 'message', title: 'Message' },
-    { id: 'effort', title: 'Effort' },
-    { id: 'debt', title: 'Debt' },
     { id: 'author', title: 'Author' },
-    { id: 'tags', title: 'Tags' },
     { id: 'creationDate', title: 'Creation Date' },
     { id: 'updateDate', title: 'Update Date' },
-    { id: 'type', title: 'Type' },
-    { id: 'scope', title: 'Scope' },
-    { id: 'quickFixAvailable', title: 'Quick Fix Available' },
-    { id: 'messageFormattings', title: 'Message Formattings' }
+    { id: 'textRange', title: 'Text Range' },
+    { id: 'flows', title: 'Flows' },
+    { id: 'ruleKey', title: 'Rule Key' },
+    { id: 'messageFormattings', title: 'Message Formattings' },
   ]
 })
 

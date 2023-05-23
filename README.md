@@ -20,6 +20,8 @@ SONARQUBE_HOST=http://the.urlOrIpAddressHere.com
 SONARQUBE_TOKEN=the_sonarQube_token_here
 ```
 
+Note that the `SONARQUBE_TOKEN` has to be a **User Token**, not a Project Analysis Token or a Global Analysis Token.
+
 You can now move to the next section on the various usages of this toolbox
 
 ## Usage Instructions

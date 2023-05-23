@@ -98,9 +98,9 @@ async function fetchAndWriteCSV () {
       for (let pageIndex = 1; ; pageIndex++) {
         const username = process.env.SONARQUBE_TOKEN || '' // replace with your actual username
         const password = ''
-        const response = await axios.get(`${process.env.SONARQUBE_HOST || 'http://localhost:9000'}/api/issues/search?p=${pageIndex}&ps=100`, { auth: { username, password }, params: { username } })
-        const { issues, total } = response.data
-        await csv.writeRecords(issues.map(flattenIssue))
+        const response = await axios.get(`${process.env.SONARQUBE_HOST || 'http://localhost:9000'}/api/rules/search?p=${pageIndex}&ps=100`, { auth: { username, password }, params: { username } })
+        const { rules, total } = response.data
+        await csv.writeRecords(rules.map(flattenIssue))
         if (pageIndex >= Math.ceil(total / 100)) break
       }
       return resolve()

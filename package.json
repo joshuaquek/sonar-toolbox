@@ -10,10 +10,10 @@
   "author": "Joshua Quek",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.4.0",
-    "csv-writer": "^1.6.0",
-    "dotenv": "^16.0.3",
-    "he": "^1.2.0"
+    "axios": "1.4.0",
+    "csv-writer": "1.6.0",
+    "dotenv": "16.0.3",
+    "he": "1.2.0"
   },
   "devDependencies": {
     "eslint": "^8.39.0",

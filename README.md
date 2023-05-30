@@ -40,7 +40,17 @@ npm run rules
 
 The output CSV Report file can be found at `./output/sonarqube_rules.csv`
 
-### Generate CSV for all Issues (Bugs, Vulnerabilities, Code Smells)
+### Generate CSV for all Findings
+
+Generate a CSV file for all Findings, which are all of the Issues (Bugs, Vulnerabilities, Code Smells) as well as all of the Security Hotspots in your SonarQube instance:
+
+```bash
+npm run findings
+```
+
+### Generate CSV for all Issues
+
+In SonarQube, an Issue can be a Bug, Vulnerability or Code Smell.
 
 Generate a CSV file with all of the information related to the **Issues** in your SonarQube instance:
 ```bash
@@ -51,12 +61,18 @@ The output CSV Report file can be found at `./output/sonarqube_issues.csv`
 
 Please also note that in SonarQube, by default, the SonarQube UI Dashboard shows all of the Unresolved Issues. To see all of the Issues, one has to use the Filter bar on the left side under the "Resolution" filter and uncheck "Unresolved" to include all of the Issues.
 
+> _Known limitation: 10000 records maximum can be fetched. 
+> If you wish to fetch more than 10000 records, refer to [Generate Findings CSV](#generate-csv-for-all-findings)_
+
 ### Generate CSV for all Security Hotspots
 
 Generate a CSV file with all of the information related to the **Hotspots** in your SonarQube instance:
 ```bash
 npm run hotspots
 ```
+
+> _Known limitation: 10000 records maximum can be fetched. 
+> If you wish to fetch more than 10000 records, refer to [Generate Findings CSV](#generate-csv-for-all-findings)_
 
 ## License
 MIT

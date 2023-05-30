@@ -6,7 +6,8 @@
   "scripts": {
     "rules": "node ./src/rules.js",
     "issues": "node ./src/issues.js",
-    "hotspots": "node ./src/hotspots.js"
+    "hotspots": "node ./src/hotspots.js",
+    "findings": "node ./src/findings.js"
   },
   "author": "Joshua Quek",
   "license": "MIT",

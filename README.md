@@ -42,7 +42,7 @@ The output CSV Report file can be found at `./output/sonarqube_rules.csv`
 
 ### Generate CSV for all Findings
 
-Generate a CSV file for all Findings, which are all of the Issues (Bugs, Vulnerabilities, Code Smells) as well as all of the Security Hotspots in your SonarQube instance:
+Generate a CSV file for all Findings (Enterprise License and above is required), which are all of the Issues - Bugs, Vulnerabilities, Code Smells - as well as all of the Security Hotspots in your SonarQube instance:
 
 ```bash
 npm run findings

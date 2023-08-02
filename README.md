@@ -47,6 +47,7 @@ Generate a CSV file for all Findings (Enterprise License and above is required),
 ```bash
 npm run findings
 ```
+> Update: This has been further improved to also include the related rule information for each finding.
 
 ### Generate CSV for all Issues
 

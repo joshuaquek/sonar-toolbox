@@ -1,4 +1,4 @@
 {
-  "SONARQUBE_HOST": "http://your_ip_address_or_url_here:port_here",
-  "SONARQUBE_TOKEN":"your_token_here"
+  "SONARQUBE_HOST": "http://localhost:9000",
+  "SONARQUBE_TOKEN":"squ_dd6cd836d5ad28448375b7b1210d47db982636b5"
 }

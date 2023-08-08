@@ -133,8 +133,10 @@ function renameRuleObject (ruleObject) {
 }
 
 function flattenFindingsRowObject (rowObject) {
-  const flattenString = (str) => str ? he.encode(str).replace(/[\r\n]+/g, '\\n') : ''
-  const flattenArray = (arr) => arr ? he.encode(arr.join(',')).replace(/[\r\n]+/g, '\\n') : []
+  // const flattenString = (str) => str ? he.encode(str).replace(/[\r\n]+/g, '\\n') : ''
+  // const flattenArray = (arr) => arr ? he.encode(arr.join(',')).replace(/[\r\n]+/g, '\\n') : []
+  const flattenString = (str) => str ? (str).replace(/[\r\n]+/g, '\\n') : ''
+  const flattenArray = (arr) => arr ? (arr.join(',')).replace(/[\r\n]+/g, '\\n') : []
   return {
     key: flattenString(rowObject.key),
     projectKey: flattenString(rowObject.projectKey),

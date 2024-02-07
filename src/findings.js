@@ -42,7 +42,8 @@ const csv = require('csv-writer').createObjectCsvWriter({
     { id: 'ruleScope', title: 'Rule Scope' },
     { id: 'ruleIsExternal', title: 'Rule Is External' },
     { id: 'ruleDescriptionSections', title: 'Rule Description Sections' },
-    { id: 'ruleEducationPrinciples', title: 'Rule Education Principles' }
+    { id: 'ruleEducationPrinciples', title: 'Rule Education Principles' },
+    { id: 'ruleCweCodes', title: 'Rule Cwe Codes' }
   ]
 })
 
@@ -108,6 +109,12 @@ function flattenProjectsRowObject (rowObject) {
 }
 
 function renameRuleObject (ruleObject) {
+  const cweRegex = /CWE-\d+/g
+  let cweCodes = ruleObject.mdDesc.match(cweRegex)
+  if (cweCodes === null) {
+    cweCodes = []
+  }
+
   return {
     ruleKey: (ruleObject.key),
     ruleRepo: (ruleObject.repo),
@@ -128,7 +135,8 @@ function renameRuleObject (ruleObject) {
     ruleScope: (ruleObject.scope),
     ruleIsExternal: ruleObject.isExternal,
     ruleDescriptionSections: (ruleObject.descriptionSections),
-    ruleEducationPrinciples: (ruleObject.educationPrinciples)
+    ruleEducationPrinciples: (ruleObject.educationPrinciples),
+    ruleCweCodes: cweCodes
   }
 }
 
@@ -175,7 +183,8 @@ function flattenFindingsRowObject (rowObject) {
     ruleScope: flattenString(rowObject.ruleScope),
     ruleIsExternal: rowObject.ruleIsExternal,
     ruleDescriptionSections: JSON.stringify(rowObject.ruleDescriptionSections),
-    ruleEducationPrinciples: JSON.stringify(rowObject.ruleEducationPrinciples)
+    ruleEducationPrinciples: JSON.stringify(rowObject.ruleEducationPrinciples),
+    ruleCweCodes: JSON.stringify(rowObject.ruleCweCodes)
   }
 }
 
@@ -207,6 +216,7 @@ async function fetchAndWriteCSV () {
           findingsWithRuleDetails.push(findingsWithRuleDetailsObject)
         }
         const findingsArrayCSVRow = findingsWithRuleDetails.map(flattenFindingsRowObject)
+        console.log('>>> Writing Row to CSV file...')
         if (findingsArrayCSVRow.length > 0) await csv.writeRecords(findingsArrayCSVRow)
       }
 
